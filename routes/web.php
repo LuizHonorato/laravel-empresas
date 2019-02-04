@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect(route('login'));
-});
+Route::get('/', 'CompanieController@index');
 
 Auth::routes();
 
