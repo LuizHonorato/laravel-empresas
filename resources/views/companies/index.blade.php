@@ -33,6 +33,7 @@
                 <td>{{$companie->id}}</th>
                 <td><img src="{{ url("storage/logos/{$companie->logo}") }}" class="img-thumbnail" style="width: 90px; height: 90px;"></td>
                 <td>{{$companie->name}}</td>
+                <td>{{$companie->email}}</td>
                 <td>{{$companie->site}}</td>
                 <td>
                     <form action="{{ route('companies.destroy', $companie->id)}}" method="post">

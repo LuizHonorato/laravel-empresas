@@ -17,8 +17,8 @@ class CompanieController extends Controller
      */
     public function index()
     {
-        $companies = DB::table('companies')->paginate(10);
-        return view('companies.index', ['companies' => $companies]);
+        $companies = Companie::latest()->paginate(10);
+        return view('companies.index', compact('companies'));
     }
 
     /**
