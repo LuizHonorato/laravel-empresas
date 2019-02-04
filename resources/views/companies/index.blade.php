@@ -48,7 +48,7 @@
             </tr>
             @endforeach
     </table>
-    {{ $companies->links() }}
+    {!! $companies->links() !!}
 </div>
 
 @endsection
