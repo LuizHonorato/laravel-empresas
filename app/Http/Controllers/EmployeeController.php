@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use App\Companie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -15,7 +16,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-       
+        $employees = Employee::paginate(10);
+        return view('employees.index', ['employees' => $employees]);
     }
 
     /**
@@ -51,7 +53,7 @@ class EmployeeController extends Controller
             'company_id' => $request->get('company_id')            
         ]);
         $employee->save();
-        return redirect('/home')->with('success', 'Empresa adicionada com sucesso.');
+        return redirect('/employees')->with('success', 'Empresa adicionada com sucesso.');
     }
 
     /**
@@ -74,7 +76,7 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $employee = Employee::find($id);
-        return view('employee.edit', compact('employee'));
+        return view('employees.edit', compact('employee'));
     }
 
     /**
@@ -102,7 +104,7 @@ class EmployeeController extends Controller
         $companie->company_id = $request->get('company_id');
 
         $companie->save();
-        return redirect('/home')->with('success', 'Funcionário atualizada com sucesso.');
+        return redirect('/employees')->with('success', 'Funcionário atualizada com sucesso.');
     }
 
     /**
@@ -115,6 +117,6 @@ class EmployeeController extends Controller
     {
         $employee = Employee::find($id);
         $employee->delete();
-        return redirect('/home')->with('success', 'Funcionário excluído com sucesso.');
+        return redirect('/employees')->with('success', 'Funcionário excluído com sucesso.');
     }
 }

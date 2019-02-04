@@ -38,7 +38,7 @@
               <input type="text" class="form-control" name="site" value="{{ $companie->site }}" />
           </div>
           <button type="submit" class="btn btn-primary">Atualizar</button>
-          <a href="{{ route('home')}}" class="btn btn-secondary">Cancelar</a>
+          <a href="{{ route('companies.index')}}" class="btn btn-secondary">Cancelar</a>
       </form>
   </div>
 </div>

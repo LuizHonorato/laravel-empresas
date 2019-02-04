@@ -72,6 +72,14 @@
                 </div>
             </div>
         </nav>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('companies.index')}}">Empresas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('employees.index')}}">Funcionários</a>
+            </li>
+        </ul>
 
         <main class="py-4">
             @yield('content')

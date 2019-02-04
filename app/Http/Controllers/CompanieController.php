@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Companie;
 use App\Employee;
 use Illuminate\Http\Request;
@@ -17,9 +17,8 @@ class CompanieController extends Controller
      */
     public function index()
     {
-        $companies = Companie::all();
-
-        return view('companies.index')->with(['companies' => $companies]);
+        $companies = DB::table('companies')->paginate(10);
+        return view('companies.index', ['companies' => $companies]);
     }
 
     /**
@@ -29,7 +28,7 @@ class CompanieController extends Controller
      */
     public function create()
     {
-        return view('companie.create');
+        return view('companies.create');
     }
 
     /**
@@ -73,7 +72,7 @@ class CompanieController extends Controller
 
 
         $companie->save();
-        return redirect('/home')->with('success', 'Empresa adicionada com sucesso.');
+        return redirect('/companies')->with('success', 'Empresa adicionada com sucesso.');
     }
 
     /**
@@ -96,7 +95,7 @@ class CompanieController extends Controller
     public function edit($id)
     {
         $companie = Companie::find($id);
-        return view('companie.edit', compact('companie'));
+        return view('companies.edit', compact('companie'));
     }
 
     /**
@@ -132,7 +131,7 @@ class CompanieController extends Controller
             $companie->site = $request->get('site');
             $companie->save();
     
-            return redirect('/home')->with('success', 'Empresa atualizada com sucesso.');
+            return redirect('/companies')->with('success', 'Empresa atualizada com sucesso.');
         } else {
             $request->validate([
                 'name' => 'required',
@@ -148,7 +147,7 @@ class CompanieController extends Controller
             $companie->site = $request->get('site');
             $companie->save();
     
-            return redirect('/home')->with('success', 'Empresa atualizada com sucesso.');
+            return redirect('/companies')->with('success', 'Empresa atualizada com sucesso.');
         }
 
     }
@@ -163,6 +162,6 @@ class CompanieController extends Controller
     {
         $companie = Companie::find($id);
         $companie->delete();
-        return redirect('/home')->with('success', 'Empresa excluída com sucesso.');
+        return redirect('/companies')->with('success', 'Empresa excluída com sucesso.');
     }
 }

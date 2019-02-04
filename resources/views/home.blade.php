@@ -13,7 +13,7 @@
         <div class="col-10">
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">@include('dashboard.dashboard')</div>
-                <div class="tab-pane fade show" id="v-pills-companie" role="tabpanel" aria-labelledby="v-pills-companie-tab">@include('companie.create')</div>
+                <div class="tab-pane fade show" id="v-pills-companie" role="tabpanel" aria-labelledby="v-pills-companie-tab">@include('companies.index')</div>
                 <div class="tab-pane fade" id="v-pills-employee" role="tabpanel" aria-labelledby="v-pills-employee-tab">@include('employee.create')</div>
             </div>
         </div>

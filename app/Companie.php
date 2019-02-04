@@ -12,7 +12,7 @@ class Companie extends Model
         return $this->hasMany('App\Employee');
     }
 
-    protected $table = 'companies';
+    //protected $table = 'companies';
 
     protected $fillable = [
         'name',
