@@ -14,20 +14,21 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('companies.update', $companie->id) }}" enctype="multipart/form-data">
+      
+      <form method="post" action="{{ route('companies.update', $companieEdit->id) }}" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
 
           <div class="form-group">
-          <img src="{{ url("storage/logos/{$companie->logo}") }}" class="img-thumbnail" style="width: 120px; height: 120px;">
+          <img src="{{ url("storage/logos/{$companieEdit->logo}") }}" class="img-thumbnail" style="width: 120px; height: 120px;">
           </div>
           <div class="form-group">
               <label for="name">Nome da empresa:</label>
-              <input type="text" class="form-control" name="name" value="{{ $companie->name }}" />
+              <input type="text" class="form-control" name="name" value="{{ $companieEdit->name }}" />
           </div>
           <div class="form-group">
               <label for="email">E-mail:</label>
-              <input type="email" class="form-control" name="email" value="{{ $companie->email }}" />
+              <input type="email" class="form-control" name="email" value="{{ $companieEdit->email }}" />
           </div>
           <div class="form-group">
               <label for="logo">Logo:</label>
@@ -35,7 +36,7 @@
           </div>
           <div class="form-group">
               <label for="site">Site:</label>
-              <input type="text" class="form-control" name="site" value="{{ $companie->site }}" />
+              <input type="text" class="form-control" name="site" value="{{ $companieEdit->site }}" />
           </div>
           <button type="submit" class="btn btn-primary">Atualizar</button>
           <a href="{{ route('companies.index')}}" class="btn btn-secondary">Cancelar</a>

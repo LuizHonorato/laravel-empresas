@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'CompanieController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::resource('companies', 'CompanieController');
+Route::get('/search-companie', 'CompanieController@search');
 
 Route::resource('employees', 'EmployeeController');
+Route::get('/search-employee', 'EmployeeController@search');

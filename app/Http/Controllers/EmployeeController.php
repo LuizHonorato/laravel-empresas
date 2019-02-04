@@ -20,6 +20,19 @@ class EmployeeController extends Controller
         return view('employees.index', ['employees' => $employees]);
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $employees = DB::table('employees')
+                        ->where('id', 'like', '%'.$search.'%')
+                        ->orWhere('name', 'like', '%'.$search.'%')
+                        ->orWhere('email', 'like', '%'.$search.'%')
+                        ->orWhere('cpf', 'like', '%'.$search.'%')
+                        ->orWhere('company_id', 'like', '%'.$search.'%')->paginate(10);
+
+        return view('employees.index', compact('employees'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

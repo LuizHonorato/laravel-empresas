@@ -22,11 +22,12 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background: #1976d2;">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/companies') }}" style="color: #fff;">
                     {{ config('app.name', 'Laravel Empresas') }}
                 </a>
+                <span><i class="fas fa-building" style="color: #fff;"></i></span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -41,17 +42,10 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Entrar') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Cadastre-se') }}</a>
-                                </li>
-                            @endif
+                            
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: #fff;">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -72,6 +66,9 @@
                 </div>
             </div>
         </nav>
+        @guest
+
+        @else
         <ul class="nav justify-content-center">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('companies.index')}}">Empresas</a>
@@ -80,6 +77,7 @@
                 <a class="nav-link" href="{{ route('employees.index')}}">Funcionários</a>
             </li>
         </ul>
+        @endguest
 
         <main class="py-4">
             @yield('content')

@@ -9,7 +9,14 @@
                     <h3>Lista de empresas</h3>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" name="search" id="search" placeholder="Buscar empresas..." />
+                    <form action="/search-companie" method="get">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search" id="search" placeholder="Buscar empresas..." />
+                            <span class="input-group-prepend">
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </span>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-md-2">
                     <a href="{{ route('companies.create')}}" class="btn btn-primary">Nova empresa</a>
@@ -42,7 +49,7 @@
                         </a>
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
+                        <button class="btn btn-danger" type="submit" onclick="ConfirmDelete()"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 </td>
             </tr>
@@ -50,5 +57,22 @@
     </table>
     {!! $companies->links() !!}
 </div>
+
+<script>
+
+  function ConfirmDelete()
+  {
+  var x = confirm("Todos os funcionários também serão excluídos. Deseja excluir esta empresa?");
+  if (x){
+    return true;
+  }
+  else{
+      event.preventDefault();
+      return false;
+  }
+    
+  }
+
+</script>
 
 @endsection

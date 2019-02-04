@@ -21,6 +21,18 @@ class CompanieController extends Controller
         return view('companies.index', compact('companies'));
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $companies = DB::table('companies')
+                        ->where('id', 'like', '%'.$search.'%')
+                        ->orWhere('name', 'like', '%'.$search.'%')
+                        ->orWhere('email', 'like', '%'.$search.'%')
+                        ->orWhere('site', 'like', '%'.$search.'%')->paginate(10);
+
+        return view('companies.index', compact('companies'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -57,7 +69,7 @@ class CompanieController extends Controller
 
         $nameFileStored = "{$nameLogo}.{$extension}";
 
-        $upload = $request->logo->storeAs('logos', $nameFileStored);
+        $upload = $request->logo->storeAs('logos', $nameFileStored, 'public');
 
         if(!$upload)
             return redirect()->back()->with('error', 'Error ao fazer upload da imagem.')->withInput();
@@ -94,8 +106,8 @@ class CompanieController extends Controller
      */
     public function edit($id)
     {
-        $companie = Companie::find($id);
-        return view('companies.edit', compact('companie'));
+        $companieEdit = Companie::find($id);
+        return view('companies.edit', compact('companieEdit'));
     }
 
     /**
@@ -115,7 +127,7 @@ class CompanieController extends Controller
             $nameLogo = uniqid(date('HisYmd'));
             $extension = $request->newLogo->extension();
             $nameFileStored = "{$nameLogo}.{$extension}";
-            $upload = $request->newLogo->storeAs('logos', $nameFileStored);
+            $upload = $request->newLogo->storeAs('logos', $nameFileStored, 'public');
 
             $request->validate([
                 'name' => 'required',
